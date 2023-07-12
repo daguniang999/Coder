@@ -1,5 +1,6 @@
 package com.chenx.coder.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.chenx.coder.pojo.entity.Test;
 
@@ -9,5 +10,5 @@ import com.chenx.coder.pojo.entity.Test;
  * @Author daguniang
  * @Date 2023/7/12 08:06
  **/
-public interface TestService extends ServiceImpl<> {
+public interface TestService extends IService<Test> {
 }
