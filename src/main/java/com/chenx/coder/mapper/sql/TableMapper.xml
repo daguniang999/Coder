@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenx.coder.mapper.TableMapper">
+
+    <resultMap id="BaseTable" type="com.chenx.coder.pojo.entity.TableDO">
+        <result column="table_catalog" property="tableCatalog"/>
+        <result column="table_schema" property="tableSchema"/>
+        <result column="table_name" property="tableName"/>
+        <result column="table_type" property="tableType"/>
+        <result column="engine" property="engine"/>
+        <result column="version" property="version"/>
+        <result column="row_format" property="rowFormat"/>
+        <result column="table_rows" property="tableRows"/>
+        <result column="avg_row_length" property="avgRowLength"/>
+        <result column="data_length" property="dataLength"/>
+        <result column="max_data_length" property="maxDataLength"/>
+        <result column="index_length" property="indexLength"/>
+        <result column="data_free" property="dataFree"/>
+        <result column="auto_increment" property="autoIncrement"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="check_time" property="checkTime"/>
+        <result column="table_collection" property="tableCollection"/>
+        <result column="check_sum" property="checkSum"/>
+        <result column="create_options" property="createOptions"/>
+        <result column="table_comment" property="tableComment"/>
+    </resultMap>
+
+    <select id="getTableList" resultMap="BaseTable">
+        SELECT
+            *
+        FROM
+            INFORMATION_SCHEMA.TABLES
+        WHERE
+            TABLE_SCHEMA = #{schema}
+    </select>
+
+</mapper>
