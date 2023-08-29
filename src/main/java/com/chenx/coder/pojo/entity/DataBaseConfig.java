@@ -1,5 +1,8 @@
 package com.chenx.coder.pojo.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 /**
@@ -9,8 +12,10 @@ import lombok.Data;
  * @Date 2023/8/27 19:22
  **/
 @Data
+@TableName("database_config")
 public class DataBaseConfig {
 
+    @TableId("config_id")
     private Long configId;
 
     private String name;
