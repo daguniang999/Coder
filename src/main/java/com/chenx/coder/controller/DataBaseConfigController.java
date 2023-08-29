@@ -22,9 +22,13 @@ public class DataBaseConfigController {
     private DataBaseConfigService dataBaseConfigService;
 
     @GetMapping(value = "/list")
-    @ResponseBody
     public ResponseInfo<List<DataBaseConfig>> getDBConfigList() {
         return ResponseInfo.ok(dataBaseConfigService.getList());
+    }
+
+    @GetMapping("/{configId}")
+    public ResponseInfo<DataBaseConfig> getDBConfig(@PathVariable("/configId") Long configId) {
+
     }
 
     @PostMapping
