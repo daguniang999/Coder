@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @ClassName TableMapper
- * @Description TODO
+ * @Description 表Mapper
  * @Author daguniang
  * @Date 2023/8/27 17:42
  **/
