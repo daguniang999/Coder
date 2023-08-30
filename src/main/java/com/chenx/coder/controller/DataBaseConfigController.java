@@ -1,6 +1,8 @@
 package com.chenx.coder.controller;
 
 import com.chenx.coder.common.ResponseInfo;
+import com.chenx.coder.config.DbSourceContext;
+import com.chenx.coder.mapper.DataBaseConfigMapper;
 import com.chenx.coder.pojo.entity.DataBaseConfig;
 import com.chenx.coder.service.DataBaseConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +30,13 @@ public class DataBaseConfigController {
 
     @GetMapping("/{configId}")
     public ResponseInfo<DataBaseConfig> getDBConfig(@PathVariable("configId") Long configId) {
+        DbSourceContext.setDbSource("main");
         return ResponseInfo.ok(dataBaseConfigService.getById(configId));
     }
 
     @PostMapping
     public ResponseInfo<Boolean> addConfig(@RequestBody DataBaseConfig dataBaseConfig) {
+        DbSourceContext.setDbSource("mainDataSource");
         return ResponseInfo.ok(dataBaseConfigService.addConfig(dataBaseConfig));
     }
 
