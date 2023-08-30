@@ -1,5 +1,7 @@
 package com.chenx.coder.config;
 
+import com.baomidou.dynamic.datasource.DynamicRoutingDataSource;
+import com.baomidou.dynamic.datasource.provider.DynamicDataSourceProvider;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
@@ -45,17 +47,13 @@ public class DbSourceConfig {
      * setDefaultTargetDataSource方法设置默认数据源
      */
     @Bean
-    public DynamicDataSource dynamicDataSource() {
-        DynamicDataSource dynamicDataSource = new DynamicDataSource();
-        //配置多数据源
-        Map<Object, Object> dbMap = new HashMap();
-        dbMap.put("main", dataSource());
-        dynamicDataSource.setTargetDataSources(dbMap);
+    public DynamicRoutingDataSource dynamicDataSource(DynamicDataSourceProvider dynamicDataSourceProvider) {
+        DynamicRoutingDataSource dynamicRoutingDataSource = new DynamicRoutingDataSource();
+        dynamicRoutingDataSource.addDataSource("main", dataSource());
 
-        // 设置默认数据源
-        dynamicDataSource.setDefaultTargetDataSource(dataSource());
-
-        return dynamicDataSource;
+        dynamicRoutingDataSource.setPrimary("main");
+        dynamicRoutingDataSource.setProvider(dynamicDataSourceProvider);
+        return dynamicRoutingDataSource;
     }
 
     /*
@@ -65,17 +63,17 @@ public class DbSourceConfig {
      * 默认bean存于com.main.example.bean包或子包下，也可直接在mapper中指定
      */
     @Bean(name = "sqlSessionFactory")
-    public MybatisSqlSessionFactoryBean sqlSessionFactory() throws Exception {
+    public MybatisSqlSessionFactoryBean sqlSessionFactory(DynamicDataSourceProvider dynamicDataSourceProvider) throws Exception {
         MybatisSqlSessionFactoryBean sqlSessionFactoryBean = new MybatisSqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(dynamicDataSource());
+        sqlSessionFactoryBean.setDataSource(dynamicDataSource(dynamicDataSourceProvider));
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath*:com/chenx/**/mapper/sql/*.xml"));    // 扫描映射文件
         return sqlSessionFactoryBean;
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager() {
+    public PlatformTransactionManager transactionManager(DynamicDataSourceProvider dynamicDataSourceProvider) {
         // 配置事务管理, 使用事务时在方法头部添加@Transactional注解即可
-        return new DataSourceTransactionManager(dynamicDataSource());
+        return new DataSourceTransactionManager(dynamicDataSource(dynamicDataSourceProvider));
     }
 }

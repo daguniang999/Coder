@@ -20,11 +20,9 @@ public class DataBaseConfig {
 
     private String name;
 
-    private String ip;
+    private String url;
 
-    private String port;
-
-    private String schema;
+    private String driver;
 
     private String username;
 

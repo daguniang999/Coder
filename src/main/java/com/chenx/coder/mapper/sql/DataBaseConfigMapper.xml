@@ -6,12 +6,11 @@
 
     <resultMap id="BaseTable" type="com.chenx.coder.pojo.entity.DataBaseConfig">
         <id column="config_id" property="configId"/>
-        <result column="ip" property="ip"/>
-        <result column="port" property="port"/>
+        <result column="url" property="url"/>
+        <result column="driver" property="driver"/>
         <result column="name" property="name"/>
         <result column="username" property="username"/>
         <result column="password" property="password"/>
-        <result column="schema" property="schema"/>
         <result column="version" property="version"/>
     </resultMap>
 
