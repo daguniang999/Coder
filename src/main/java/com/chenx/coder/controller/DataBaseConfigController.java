@@ -27,8 +27,8 @@ public class DataBaseConfigController {
     }
 
     @GetMapping("/{configId}")
-    public ResponseInfo<DataBaseConfig> getDBConfig(@PathVariable("/configId") Long configId) {
-
+    public ResponseInfo<DataBaseConfig> getDBConfig(@PathVariable("configId") Long configId) {
+        return ResponseInfo.ok(dataBaseConfigService.getById(configId));
     }
 
     @PostMapping
@@ -38,7 +38,12 @@ public class DataBaseConfigController {
 
     @PutMapping
     public ResponseInfo<Boolean> updateDBConfig(@RequestBody DataBaseConfig dataBaseConfig) {
-        return null;
+        return ResponseInfo.ok(dataBaseConfigService.updateConfig(dataBaseConfig));
+    }
+
+    @DeleteMapping("/{configId}")
+    public ResponseInfo<Boolean> deleteDBConfig(@PathVariable("configId") Long configId) {
+        return ResponseInfo.ok(dataBaseConfigService.deleteConfig(configId));
     }
 
 }
