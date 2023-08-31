@@ -1,5 +1,6 @@
 package com.chenx.coder.controller;
 
+import com.chenx.coder.config.DB;
 import com.chenx.coder.pojo.entity.SchemaDO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import java.util.List;
 public class SchemaController {
 
     @GetMapping("/list")
+    @DB
     public List<SchemaDO> getSchemaList(@RequestParam("configId") Long configId) {
         return null;
     }

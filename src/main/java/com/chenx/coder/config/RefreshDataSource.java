@@ -1,6 +1,7 @@
 package com.chenx.coder.config;
 
 import com.baomidou.dynamic.datasource.DynamicRoutingDataSource;
+import com.chenx.coder.common.ActiveDB;
 import com.chenx.coder.pojo.entity.DataBaseConfig;
 import com.chenx.coder.service.DataBaseConfigService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.stereotype.Component;
-
-import javax.sql.DataSource;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @ClassName RefreshDataSource
@@ -22,6 +19,9 @@ import java.util.Map;
  **/
 @Component
 public class RefreshDataSource implements CommandLineRunner {
+
+    @Autowired
+    ActiveDB activeDB;
 
     @Autowired
     DynamicRoutingDataSource dynamicRoutingDataSource;
@@ -44,6 +44,7 @@ public class RefreshDataSource implements CommandLineRunner {
                     .password(dataBaseConfig.getPassword())
                     .build()
             );
+            activeDB.setActiveName(dataBaseConfig.getName());
         }
     }
 }

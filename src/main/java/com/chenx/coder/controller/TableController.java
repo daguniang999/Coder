@@ -1,8 +1,7 @@
 package com.chenx.coder.controller;
 
-import com.baomidou.dynamic.datasource.annotation.DS;
-import com.baomidou.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
-import com.chenx.coder.config.DbSourceContext;
+import com.chenx.coder.common.ResponseInfo;
+import com.chenx.coder.config.DB;
 import com.chenx.coder.pojo.entity.TableDO;
 import com.chenx.coder.service.TableService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +30,8 @@ public class TableController {
      * @return
      */
     @GetMapping("/list")
-    public List<TableDO> getTableList(@RequestParam("schema") String schema) {
-        DynamicDataSourceContextHolder.push("mac");
-        return tableService.getTableList(schema);
+    @DB
+    public ResponseInfo<List<TableDO>> getTableList(@RequestParam("schema") String schema) {
+        return ResponseInfo.ok(tableService.getTableList(schema));
     }
 }

@@ -15,9 +15,13 @@ public interface DataBaseConfigService extends IService<DataBaseConfig> {
 
     List<DataBaseConfig> getList();
 
-    Boolean addConfig(DataBaseConfig dataBaseConfig);
+    Boolean addConfig(DataBaseConfig dataBaseConfig) throws Exception;
 
-    Boolean updateConfig(DataBaseConfig dataBaseConfig);
+    Boolean updateConfig(DataBaseConfig dataBaseConfig) throws Exception;
 
     Boolean deleteConfig(Long configId);
+
+    DataBaseConfig getActiveConfig();
+
+    Boolean updateActiveConfig(Long configId);
 }
