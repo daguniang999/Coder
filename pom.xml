@@ -127,7 +127,7 @@
                 <filtering>false</filtering>
 
                      
-                     
+<!--                      1 -->
             </resource>
         </resources>
     </build>
