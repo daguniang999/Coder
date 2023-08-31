@@ -125,6 +125,8 @@
                     <include>**/*.sql</include>
                 </includes>
                 <filtering>false</filtering>
+
+                     
             </resource>
         </resources>
     </build>
