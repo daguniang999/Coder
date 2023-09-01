@@ -31,14 +31,12 @@ public class DataBaseConfigController {
     @GetMapping("/{configId}")
     @DB(active = "main")
     public ResponseInfo<DataBaseConfig> getDBConfig(@PathVariable("configId") Long configId) {
-        DbSourceContext.setDbSource("main");
         return ResponseInfo.ok(dataBaseConfigService.getById(configId));
     }
 
     @PostMapping
     @DB(active = "main")
     public ResponseInfo<Boolean> addConfig(@RequestBody DataBaseConfig dataBaseConfig) throws Exception {
-        DbSourceContext.setDbSource("mainDataSource");
         return ResponseInfo.ok(dataBaseConfigService.addConfig(dataBaseConfig));
     }
 
