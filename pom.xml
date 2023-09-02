@@ -123,6 +123,7 @@
                     <include>**/*.CAB</include>
                     <include>**/*.ico</include>
                     <include>**/*.sql</include>
+                    <include>**/*.ftl</include>
                 </includes>
                 <filtering>false</filtering>
 
