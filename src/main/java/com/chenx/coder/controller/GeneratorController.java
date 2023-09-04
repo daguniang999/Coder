@@ -1,13 +1,14 @@
 package com.chenx.coder.controller;
 
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.io.IoUtil;
+import com.chenx.coder.common.ExportUtil;
 import com.chenx.coder.common.FreeMarkerTemplateUtils;
-import freemarker.template.Configuration;
-import freemarker.template.Template;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.StringWriter;
+import java.net.URL;
 import java.util.HashMap;
 
 /**
@@ -22,13 +23,13 @@ public class GeneratorController {
 
     @GetMapping
     public String test() throws Exception {
-        String filePath = "deliverDemo.ftl";
+        String filePath = "template/deliverDemo.ftl";
         FreeMarkerTemplateUtils utils = new FreeMarkerTemplateUtils();
 
         HashMap<Object, Object> map = new HashMap<Object, Object>();
-        map.put("cityId",110);
+        map.put("name", "cxw");
         String content = utils.getData(filePath,map);
-        System.out.println(content);
+        ExportUtil.exportClassPath(filePath, content);
         return content;
     }
 }
