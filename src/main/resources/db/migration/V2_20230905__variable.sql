@@ -1,0 +1,36 @@
+create table if not exists variable (
+    variable_id int not null,
+    name varchar(50) not null,
+    variable varchar(200) not null,
+    is_default tinyint(4) not null,
+    alias varchar(200) default null,
+    description varchar(200) default null
+);
+-- 默认数据
+insert into variable(variable_id, name, variable, is_default, alias, description) values
+(1, "类的全称(包括包名)", "tableClass.fullClassName", "1", "", ""),
+(2, "类的简称", "tableClass.shortClassName", "1", "", ""),
+(3, "表名", "tableClass.tableName", "1", "", ""),
+(4, "表的所有主键字段", "tableClass.pkFields", "1", "", ""),
+(5, "表的所有字段", "tableClass.allFields", "1", "", ""),
+(6, "排除主键和 blob 的所有字段", "tableClass.baseFields", "1", "", ""),
+(7, "排除主键的所有字段", "tableClass.baseBlobFields", "1", "", ""),
+(8, "表注释", "tableClass.remark", "1", "", ""),
+(9, "字段名称", "field.fieldName", "1", "", ""),
+(10, "列名称", "field.columnName", "1", "", ""),
+(11, "jdbc 类型", "field.jdbcType", "1", "", ""),
+(12, "列段长度", "field.columnLength", "1", "", ""),
+(13, "列的精度", "field.columnScale", "1", "", ""),
+(14, "字段类型是不是数组类型", "field.columnIsArray", "1", "", ""),
+(15, "java 类型短名称, 通常用于定义字段", "field.shortTypeName", "1", "", ""),
+(16, "java 类型的长名称, 通常用于导入", "field.fullTypeName", "1", "", ""),
+(17, "字段注释", "field.remark", "1", "", ""),
+(18, "是否自增", "field.autoIncrement", "1", "", ""),
+(19, "是否允许为空", "field.nullable", "1", "", ""),
+(20, "配置名称", "baseInfo.shortClassName", "1", "", ""),
+(21, "配置文件名称", "baseInfo.tableName", "1", "", ""),
+(22, "配置名称", "baseInfo.pkFields", "1", "", ""),
+(23, "后缀", "baseInfo.allFields", "1", "", ""),
+(24, "包名", "baseInfo.baseFields", "1", "", ""),
+(25, "模板内容", "baseInfo.baseBlobFields", "1", "", ""),
+(26, "相对模块的资源文件路径", "baseInfo.remark", "1", "", "");

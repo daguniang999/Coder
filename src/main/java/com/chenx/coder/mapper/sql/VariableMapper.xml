@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenx.coder.mapper.VariableMapper">
+
+    <resultMap id="BaseTable" type="com.chenx.coder.pojo.entity.VariableDO">
+        <id column="variable_id" property="variableId"/>
+        <result column="name" property="name"/>
+        <result column="variable" property="variable"/>
+        <result column="is_default" property="isDefault"/>
+        <result column="alias" property="alias"/>
+        <result column="description" property="description"/>
+    </resultMap>
+</mapper>
